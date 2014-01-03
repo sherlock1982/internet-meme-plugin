@@ -14,7 +14,7 @@ public class MemeDescriptorTest extends TestCase {
 	}
 
 	public void testGetDisplayName() {
-		assertEquals("Activate Chuck Norris", descriptor.getDisplayName());
+		assertEquals("Activate Internet Meme", descriptor.getDisplayName());
 	}
 
 	public void testIsApplicableGivesTrue() {
