@@ -7,10 +7,10 @@
     </parent>
 
     <artifactId>internetmeme</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>InternetMeme Plugin</name>
     <description>Displays an Internet Meme on each build page. Inspired by Chuck Norris plugin</description>
-    <url>http://wiki.jenkins-ci.org/display/JENKINS/Internet+Meme+Plugin</url>
+    <url>https://wiki.jenkins-ci.org/display/JENKINS/Internet+Meme+Plugin</url>
     <packaging>hpi</packaging>
 
     <developers>
@@ -21,7 +21,7 @@
             <timezone>+10</timezone>
         </developer>
         <developer>
-            <id>harpreet100</id>
+            <id>harpreet1002</id>
             <name>Harpreet Singh</name>
             <email>singh.harry@gmail.com</email>
             <timezone>-8</timezone>
@@ -131,9 +131,9 @@
     </reporting>
     
     <scm>
-        <connection>scm:git:git://github.com/jenkinsci/chucknorris-plugin.git</connection>
-        <developerConnection>scm:git:git@github.com:jenkinsci/chucknorris-plugin.git</developerConnection>
-        <url>https://github.com/jenkinsci/chucknorris-plugin</url>
+        <connection>scm:git:git://github.com/jenkinsci/internet-meme-plugin</connection>
+        <developerConnection>scm:git:git@github.com:jenkinsci/internet-meme-plugin.git</developerConnection>
+        <url>https://github.com/jenkinsci/internet-meme-plugin.git</url>
     </scm>
 
     <pluginRepositories>
