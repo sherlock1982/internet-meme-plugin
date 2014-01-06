@@ -7,7 +7,7 @@
     </parent>
 
     <artifactId>internetmeme</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <name>InternetMeme Plugin</name>
     <description>Displays an Internet Meme on each build page. Inspired by Chuck Norris plugin</description>
     <url>https://wiki.jenkins-ci.org/display/JENKINS/Internet+Meme+Plugin</url>
