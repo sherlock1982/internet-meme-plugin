@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2009 Cliffano Subagio
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -40,7 +40,7 @@ public enum Style {
      *            the build result
      * @return the style
      */
-    public static final Style get(final Result result) {
+    public static Style get(final Result result) {
         Style style;
         if (Result.FAILURE.equals(result)) {
             style = BAD_BUILD;

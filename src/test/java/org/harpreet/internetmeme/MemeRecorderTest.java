@@ -1,7 +1,5 @@
 package org.harpreet.internetmeme;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 import hudson.Launcher;
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
@@ -18,6 +16,9 @@ import org.harpreet.internetmeme.MemeRecorder;
 import org.harpreet.internetmeme.Style;
 
 import junit.framework.TestCase;
+import org.mockito.ArgumentCaptor;
+
+import static org.mockito.Mockito.*;
 
 public class MemeRecorderTest extends TestCase {
 
@@ -29,7 +30,7 @@ public class MemeRecorderTest extends TestCase {
 	}
 
 	public void testGetProjectActionWithNoLastBuildGivesNullAction() {
-		AbstractProject mockProject = mock(AbstractProject.class);
+		AbstractProject<?, ?> mockProject = mock(AbstractProject.class);
 		when(mockProject.getLastBuild()).thenReturn(null);
 		assertNull(recorder.getProjectAction(mockProject));
 	}
@@ -49,19 +50,19 @@ public class MemeRecorderTest extends TestCase {
 
 	public void testPerformWithFailureResultAddsMemeActionWithBadAssStyleAndExpectedFact()
 			throws Exception {
-		List<Action> actions = new ArrayList<Action>();
-		AbstractBuild mockBuild = mock(AbstractBuild.class);
+		AbstractBuild<?, ?> mockBuild = mock(AbstractBuild.class);
 		when(mockBuild.getResult()).thenReturn(Result.FAILURE);
-		when(mockBuild.getActions()).thenReturn(actions);
 
-		assertEquals(0, actions.size());
+		ArgumentCaptor<MemeAction> actionCaptor = ArgumentCaptor.forClass(MemeAction.class);
+		doNothing().when(mockBuild).addAction(actionCaptor.capture());
 
 		recorder.perform(mockBuild, mock(Launcher.class),
 				mock(BuildListener.class));
 
-		assertEquals(1, actions.size());
-		assertTrue(actions.get(0) instanceof MemeAction);
-		assertEquals(Style.BAD_BUILD, ((MemeAction) actions.get(0))
-				.getStyle());
+		MemeAction action = actionCaptor.getValue();
+		verify(mockBuild, times(1)).addAction(same(action));
+
+		assertNotNull(action.getDisplayFileName());
+		assertEquals(Style.BAD_BUILD, action.getStyle());
 	}
 }

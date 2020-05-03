@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2009 Cliffano Subagio
  * Copyright (c) 2013 Harpreet Singh
  *
@@ -23,23 +23,29 @@
 package org.harpreet.internetmeme;
 
 import hudson.model.Action;
+import hudson.model.Run;
+import jenkins.model.RunAction2;
+import jenkins.tasks.SimpleBuildStep.LastBuildAction;
+
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * {@link MemeAction} keeps the style and fact associated with the action.
  * @author cliffano
  * @author Harpreet Singh
  */
-public final class MemeAction implements Action {
+public final class MemeAction implements RunAction2, LastBuildAction {
 
     /**
-     * The style - for backward compatibility to version 0.2.
+     * The run
      */
-    private Style style;
+    private transient Run<?, ?> mRun;
 
     /**
      * The style.
      */
-    private Style mStyle;
+    private final Style mStyle;
 
     /**
      * Constructs a MemeAction with specified style and fact.
@@ -80,10 +86,10 @@ public final class MemeAction implements Action {
      */
     public Style getStyle() {
         Style theStyle;
-        if (mStyle != null) {
-            theStyle = mStyle;
+        if (mRun != null){
+            theStyle = Style.get(mRun.getResult());
         } else {
-            theStyle = style;
+            theStyle = mStyle;
         }
         return theStyle;
     }
@@ -94,6 +100,25 @@ public final class MemeAction implements Action {
     public String getDisplayFileName() {
         String style = getStyle().toString().toLowerCase();
         int imageId = MemeDB.getRandomDBImageNumber();
-        return style + "_" + String.valueOf(imageId);
+        return style + "_" + imageId;
+    }
+
+    @Override
+    public void onAttached(Run run) {
+        this.mRun = run;
+    }
+
+    @Override
+    public void onLoad(Run run) {
+        this.mRun = run;
+    }
+
+    @Override
+    public Collection<? extends Action> getProjectActions() {
+        if (mRun != null) {
+            return mRun.getParent().getLastCompletedBuild().getActions(MemeAction.class);
+        } else {
+            return Collections.singletonList(this);
+        }
     }
 }

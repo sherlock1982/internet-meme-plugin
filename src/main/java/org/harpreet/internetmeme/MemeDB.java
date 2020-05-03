@@ -1,6 +1,6 @@
 package org.harpreet.internetmeme;
 
-/**
+/*
  * Copyright (c) 2013 Harpreet Singh
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -32,10 +32,9 @@ public class MemeDB {
      * DB Size = the number of images for good, bad or alert builds respectively.
      * Images in the webapp/resources directory
      */
-    private int memeDBSize = 7;
-    private static Random random = new Random ();
+    private static final Random random = new Random ();
 
     public static int getRandomDBImageNumber (){
-        return random.nextInt(3);
+        return random.nextInt(12);
     }
 }

@@ -1,3 +1,5 @@
+.m2
 *.iml
 *~
 .idea/
+target/

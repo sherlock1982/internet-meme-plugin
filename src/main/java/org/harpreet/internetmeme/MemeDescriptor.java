@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2009 Cliffano Subagio
  * Copyright (c) 2013 Harpreet Singh
  *
@@ -23,7 +23,6 @@
 package org.harpreet.internetmeme;
 
 import hudson.Extension;
-import hudson.model.AbstractProject;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Publisher;
 
@@ -59,7 +58,7 @@ public class MemeDescriptor extends BuildStepDescriptor<Publisher> {
      */
     @Override
     public final boolean isApplicable(
-            final Class<? extends AbstractProject> clazz) {
+            final Class clazz) {
         return true;
     }
 }
