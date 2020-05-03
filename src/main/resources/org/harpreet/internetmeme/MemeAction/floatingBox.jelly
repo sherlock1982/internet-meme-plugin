@@ -1,4 +1,6 @@
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:i="jelly:fmt" xmlns:local="local">
-    <img src="${rootURL}/plugin/internetmeme/images/${from.displayFileName}.jpg" height="250" width="350"/>
+    <div align="right">
+        <img src="${rootURL}/plugin/internetmeme/images/${from.displayFileName}.jpg" height="250" width="350"/>
+    </div>
 </j:jelly>
